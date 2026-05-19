@@ -1,17 +1,14 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 )
 
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", echo)
+	mux.HandleFunc("/register-user", registerUser)
+	mux.HandleFunc("/{user_id}/subscribe{flight_id}", echo)
 
 	return mux
-}
-
-func echo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Good")
 }
