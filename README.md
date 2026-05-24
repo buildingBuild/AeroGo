@@ -4,7 +4,7 @@
 
 An event-driven system built with Apache Kafka and Go that processes streaming flight data and delivers real-time alerts based on state changes.
 The system ingests continuous flight updates, detects meaningful transitions (e.g., delay increases, gate changes), and notifies users via SMS with low latency.
-(check out the system arch for more)
+(check out the system architecture for more)
 
 ## What it does
 
