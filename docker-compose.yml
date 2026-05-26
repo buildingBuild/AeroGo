@@ -1,4 +1,4 @@
-name: aergo
+name: aerogo
 
 services:
   kafka:

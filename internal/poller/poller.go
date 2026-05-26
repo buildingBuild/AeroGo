@@ -1,29 +1,54 @@
 package poller
 
 import (
-	"fmt"
-	"io"
-	"log"
-	"net/http"
+	"time"
+
+	"aero-Go/internal/flights"
 )
 
-func start() {
+func MockUpdates() []flights.FlightUpdate {
+	now := time.Now().UTC()
 
-	for {
-		flightAPI, err := http.Get("https://example.com")
-
-		if err != nil {
-			log.Fatal(err)
-
-			resp, err := http.Get("https://example.com")
-			if err != nil {
-				log.Fatal(err)
-			}
-			defer resp.Body.Close() // Always close the body to prevent leaks
-
-			body, _ := io.ReadAll(resp.Body)
-			fmt.Println(string(body))
-		}
+	return []flights.FlightUpdate{
+		{
+			EventID:           "AA123-001",
+			FlightID:          "AA123",
+			FlightNumber:      "AA123",
+			Status:            "scheduled",
+			DepartureGate:     "A4",
+			DepartureTerminal: "1",
+			DelayMinutes:      0,
+			ObservedAt:        now,
+		},
+		{
+			EventID:           "AA123-002",
+			FlightID:          "AA123",
+			FlightNumber:      "AA123",
+			Status:            "scheduled",
+			DepartureGate:     "A7",
+			DepartureTerminal: "1",
+			DelayMinutes:      0,
+			ObservedAt:        now.Add(1 * time.Minute),
+		},
+		{
+			EventID:           "AA123-003",
+			FlightID:          "AA123",
+			FlightNumber:      "AA123",
+			Status:            "delayed",
+			DepartureGate:     "A7",
+			DepartureTerminal: "1",
+			DelayMinutes:      35,
+			ObservedAt:        now.Add(2 * time.Minute),
+		},
+		{
+			EventID:           "AA123-004",
+			FlightID:          "AA123",
+			FlightNumber:      "AA123",
+			Status:            "departed",
+			DepartureGate:     "A7",
+			DepartureTerminal: "1",
+			DelayMinutes:      35,
+			ObservedAt:        now.Add(3 * time.Minute),
+		},
 	}
-
 }
