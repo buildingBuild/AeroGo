@@ -1,4 +1,5 @@
 CREATE TABLE subscriptions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid()
   user_id BIGINT NOT NULL REFERENCES users(id),
   flight_id BIGINT NOT NULL REFERENCES flights(id),
   active BOOLEAN NOT NULL DEFAULT true,
